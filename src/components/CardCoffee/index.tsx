@@ -1,30 +1,87 @@
-import React from "react";
-import ExampleCoffee from "../../assets/exampleCoffee.png";
-import { Container } from "./styles";
+import React, { FC } from "react";
+import CartButton from "../../assets/cartButton.svg";
+import Less from "../../assets/less.svg";
+import More from "../../assets/more.svg";
+import {
+  Container,
+  ContainerPrice,
+  ContainerSubTextTitle,
+  ContainerTextTitle,
+  Tag,
+  ButtonCart,
+  ContainerAddedItem,
+  ContainerTextPrice,
+  PriceLabelText,
+  TextPrice,
+} from "./styles";
 
-const CardCoffee = () => {
+const formatPrice = (price: number) => {
+  return new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(price);
+};
+
+export interface CardCoffeeProps {
+  tags: string[];
+  title: string;
+  subtitle: string;
+  price: number;
+  quantity: number;
+  imgName: string;
+}
+
+const CardCoffee: FC<CardCoffeeProps> = (props) => {
+  const { quantity, imgName, tags, price, title, subtitle } = props;
+  console.debug(`./../assets/coffees/${imgName}.png`);
+  const priceFormatted = formatPrice(price);
   return (
     <>
       <Container>
-        <img
-          src={ExampleCoffee}
-          alt={"café"}
-          style={{ top: -25, position: "absolute" }}
-        />
-        <div>
-          <text>tradicional</text>
+        <div
+          style={{
+            top: -40,
+            position: "absolute",
+          }}
+        >
+          <img src={`/coffees/${imgName}.png`} alt={title} />
         </div>
-        <div>
-          <text>Expresso Tradicional</text>
-        </div>
-        <div>
-          <text>O tradicional café feito com água quente e grãos moídos</text>
-        </div>
-        <div>
-          <text>value</text>
-          <button>add</button>
-          <button>card</button>
-        </div>
+        <Tag>
+          <text>{tags[0]}</text>
+        </Tag>
+        <ContainerTextTitle>
+          <text>{title}</text>
+        </ContainerTextTitle>
+        <ContainerSubTextTitle>
+          <text>{subtitle}</text>
+        </ContainerSubTextTitle>
+        <ContainerPrice>
+          <ContainerTextPrice>
+            <PriceLabelText>{priceFormatted.substring(0, 2)}</PriceLabelText>
+            <TextPrice>
+              {priceFormatted.substring(2, priceFormatted.length)}
+            </TextPrice>
+          </ContainerTextPrice>
+          <ContainerAddedItem>
+            <button>
+              <img src={Less} alt={"Diminuir item"} />
+            </button>
+            <text>{quantity}</text>
+            <button>
+              <img src={More} alt={"Aumentar item"} />
+            </button>
+          </ContainerAddedItem>
+          <ButtonCart>
+            <img
+              src={CartButton}
+              alt={"Carrinho de compras"}
+              width={20}
+              height={20}
+            />
+          </ButtonCart>
+        </ContainerPrice>
       </Container>
     </>
   );

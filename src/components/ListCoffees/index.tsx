@@ -1,11 +1,22 @@
 import React from "react";
-import CardCoffee from "../CardCoffee";
+import CardCoffee, { CardCoffeeProps } from "../CardCoffee";
+
+const products: CardCoffeeProps[] = [
+  {
+    title: "Expresso tradicional",
+    subtitle: "O tradicional café feito com água quente e grãos moídos",
+    quantity: 0,
+    price: 9.9,
+    imgName: "expressoTradicional",
+    tags: ["TRADICIONAL"],
+  },
+];
 
 const Index = () => {
   return (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: 20 }}>
-      {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-        <CardCoffee />
+    <div style={{ display: "flex", flexWrap: "wrap", gap: 30 }}>
+      {products.map((item) => (
+        <CardCoffee {...item} />
       ))}
     </div>
   );

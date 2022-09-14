@@ -41,10 +41,6 @@ export const ContainerItens = styled.div`
   row-gap: 20px;
 `;
 
-export const ContainerColumnItem = styled.div`
-  margin-right: 3rem;
-`;
-
 export const ContainerItem = styled.div<{ withMarginBottom?: boolean }>`
   gap: 0.75rem;
   display: flex;
