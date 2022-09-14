@@ -120,3 +120,9 @@ export const ButtonCart = styled.button`
     background-color: ${({ theme }) => theme.brand.purple};
   }
 `;
+
+export const ContainerTags = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+`;

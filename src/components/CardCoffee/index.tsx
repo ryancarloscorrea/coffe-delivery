@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import CartButton from "../../assets/cartButton.svg";
+import CartButton from "../../assets/cart_white.svg";
 import Less from "../../assets/less.svg";
 import More from "../../assets/more.svg";
 import {
@@ -13,6 +13,7 @@ import {
   ContainerTextPrice,
   PriceLabelText,
   TextPrice,
+  ContainerTags,
 } from "./styles";
 
 const formatPrice = (price: number) => {
@@ -35,7 +36,6 @@ export interface CardCoffeeProps {
 
 const CardCoffee: FC<CardCoffeeProps> = (props) => {
   const { quantity, imgName, tags, price, title, subtitle } = props;
-  console.debug(`./../assets/coffees/${imgName}.png`);
   const priceFormatted = formatPrice(price);
   return (
     <>
@@ -48,9 +48,14 @@ const CardCoffee: FC<CardCoffeeProps> = (props) => {
         >
           <img src={`/coffees/${imgName}.png`} alt={title} />
         </div>
-        <Tag>
-          <text>{tags[0]}</text>
-        </Tag>
+        <ContainerTags>
+          {tags.map((tag) => (
+            <Tag>
+              <text>{tag}</text>
+            </Tag>
+          ))}
+        </ContainerTags>
+
         <ContainerTextTitle>
           <text>{title}</text>
         </ContainerTextTitle>
