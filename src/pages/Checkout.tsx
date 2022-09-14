@@ -1,7 +1,20 @@
 import React from "react";
+import Address from "../components/Address";
 
 const Checkout = () => {
-  return <div style={{ backgroundColor: "blue", width: 30, height: 30 }}></div>;
+  return (
+    <div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "flex-start",
+        }}
+      >
+        <Address />
+      </div>
+    </div>
+  );
 };
 
 export default Checkout;
